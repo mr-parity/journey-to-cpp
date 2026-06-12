@@ -1,0 +1,1 @@
+static int myage = 10;

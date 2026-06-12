@@ -245,12 +245,28 @@
 */
 
 #include<iostream>
+#include "static-sample.cpp"
 
-int myage = 12;
+// int myage = 12;
+
+int Coordinate::x;
+int Coordinate::y;
 
 int main() {
 
-    std::cout<<myage<<std::endl;
+    // std::cout<<myage<<std::endl;
+
+    Coordinate::x = 10;
+    Coordinate::y = 10;
+
+    
+    Coordinate::x = 20;
+    Coordinate::y = 20;
+
+    Coordinate::printCoordinates();
+    Coordinate::printCoordinates();
+
+
 
     return 0;
 }

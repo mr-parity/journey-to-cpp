@@ -1,47 +1,59 @@
-#include<iostream>
+#include <iostream>
 
 // logger class
-class Logger {
+class Logger
+{
 
-    public:
-        int log_level_info = 0;
-        int log_level_warning = 1;
-        int log_level_error = 2;
+public:
+    enum LogLevel : unsigned char
+    {
+        LevelInfo,
+        LevelWarning,
+        LevelError
+    };
 
-    private:
-        int m_log_level = 0;
+private:
+    LogLevel m_log_level = LevelInfo;
 
-    public:
-        void setLogLevel(int log_level) {
-            m_log_level = log_level;
+public:
+    void setLogLevel(LogLevel new_level)
+    {
+        m_log_level = new_level;
+    }
+
+    void Info()
+    {
+        if (m_log_level <= LevelInfo)
+        {
+            std::cout << "[\033[36mINFO\033[0m]:" << "This is some information" << std::endl;
         }
+    }
 
-        void Info() {
-            if(m_log_level <= log_level_info) {
-                std::cout<<"[\033[36mINFO\033[0m]:"<<"This is some information"<<std::endl;
-            }
+    void Warning()
+    {
+        if (m_log_level <= LevelWarning)
+        {
+            std::cout << "[\033[33mWARNING\033[0m]: " << "This is some warning" << std::endl;
         }
+    }
 
-        void Warning() {
-            if(m_log_level <= log_level_warning) {
-                std::cout<<"[\033[33mWARNING\033[0m]: "<<"This is some warning"<<std::endl;
-            }
+    void Error()
+    {
+        if (m_log_level <= LevelError)
+        {
+            std::cout << "[\033[31mERROR\033[0m]: " << "This is some error" << std::endl;
         }
-
-        void Error() {
-            if(m_log_level <= log_level_error) {
-                std::cout<<"[\033[31mERROR\033[0m]: "<<"This is some error"<<std::endl;
-            }
-        }
+    }
 };
 
 // main function
-int main() {
+int main()
+{
 
     // instansiate logger
     Logger logger;
 
-    logger.setLogLevel(logger.log_level_info);
+    logger.setLogLevel(Logger::LevelInfo);
 
     // call member funtions
     logger.Info();
